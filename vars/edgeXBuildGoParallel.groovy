@@ -132,7 +132,7 @@ def call(config) {
             }
         }
         options {
-            timestamps()
+            // timestamps()
             preserveStashes()
             quietPeriod(5)
             durabilityHint 'PERFORMANCE_OPTIMIZED'
@@ -140,7 +140,7 @@ def call(config) {
             disableConcurrentBuilds()
         }
         triggers {
-            issueCommentTrigger('.*^recheck$.*')
+            // issueCommentTrigger('.*^recheck$.*')
         }
         parameters {
             string(
