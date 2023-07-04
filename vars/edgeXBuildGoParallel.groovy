@@ -132,16 +132,16 @@ def call(config) {
             }
         }
         options {
-            timestamps()
+            // timestamps()
             preserveStashes()
             quietPeriod(5)
             durabilityHint 'PERFORMANCE_OPTIMIZED'
             timeout(360)
             disableConcurrentBuilds()
         }
-        triggers {
+        // triggers {
             // issueCommentTrigger('.*^recheck$.*')
-        }
+        // }
         parameters {
             string(
                 name: 'CommitId',
