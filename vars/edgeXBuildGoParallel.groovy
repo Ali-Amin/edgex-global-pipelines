@@ -444,21 +444,21 @@ def call(config) {
             }
         }
 
-        post {
-            failure {
-                script {
-                    sh 'echo failed'
-                    currentBuild.result = 'FAILED'
-                    // only send email when on a release stream branch i.e. main, hanoi, ireland, etc.
-                    if(edgex.isReleaseStream()) {
-                        edgeXEmail(emailTo: env.BUILD_FAILURE_NOTIFY_LIST)
-                    }
-                }
-            }
-            cleanup {
-                cleanWs()
-            }
-        }
+        // post {
+        //     failure {
+        //         script {
+        //             sh 'echo failed'
+        //             currentBuild.result = 'FAILED'
+        //             // only send email when on a release stream branch i.e. main, hanoi, ireland, etc.
+        //             if(edgex.isReleaseStream()) {
+        //                 edgeXEmail(emailTo: env.BUILD_FAILURE_NOTIFY_LIST)
+        //             }
+        //         }
+        //     }
+        //     cleanup {
+        //         cleanWs()
+        //     }
+        // }
     }
 }
 
