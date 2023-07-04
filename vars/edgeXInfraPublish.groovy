@@ -43,7 +43,7 @@ import org.jenkinsci.plugins.workflow.libs.Library
  ```
 */
 
-@Library("lf-pipelines") _
+// @Library("lf-pipelines") _
 
 def call(body) {
     // evaluate the body block, and collect configuration into the object

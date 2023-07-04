@@ -14,7 +14,6 @@ import org.jenkinsci.plugins.workflow.libs.Library
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-@Library("lf-pipelines") _
 
 /**
  # edgeXBuildGoParallel
@@ -133,16 +132,16 @@ def call(config) {
             }
         }
         options {
-            timestamps()
+            // timestamps()
             preserveStashes()
             quietPeriod(5)
             durabilityHint 'PERFORMANCE_OPTIMIZED'
             timeout(360)
             disableConcurrentBuilds()
         }
-        triggers {
-            issueCommentTrigger('.*^recheck$.*')
-        }
+        // triggers {
+            // issueCommentTrigger('.*^recheck$.*')
+        // }
         parameters {
             string(
                 name: 'CommitId',
@@ -448,15 +447,13 @@ def call(config) {
         post {
             failure {
                 script {
+                    sh 'echo failed'
                     currentBuild.result = 'FAILED'
                     // only send email when on a release stream branch i.e. main, hanoi, ireland, etc.
                     if(edgex.isReleaseStream()) {
                         edgeXEmail(emailTo: env.BUILD_FAILURE_NOTIFY_LIST)
                     }
                 }
-            }
-            always {
-                edgeXInfraPublish()
             }
             cleanup {
                 cleanWs()

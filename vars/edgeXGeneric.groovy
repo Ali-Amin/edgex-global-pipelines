@@ -17,7 +17,7 @@ import org.jenkinsci.plugins.workflow.libs.Library
 // limitations under the License.
 //
 
-@Library("lf-pipelines") _
+// @Library("lf-pipelines") _
 
 /**
  # edgeXGeneric
