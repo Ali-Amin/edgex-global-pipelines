@@ -14,7 +14,6 @@ import org.jenkinsci.plugins.workflow.libs.Library
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-@Library("lf-pipelines") _
 
 /**
  # edgeXBuildGoParallel
