@@ -68,6 +68,8 @@ def call(config = [:]) {
     if(_dockerHubRegistry)   { envVars << "DOCKERHUB_REGISTRY=${_dockerHubRegistry}" }
     if(_dockerHubEmail)      { envVars << "DOCKERHUB_EMAIL=${_dockerHubEmail}" }
 
+    sh(script: 'echo $SETTINGS_FILE')
+
     withEnv(envVars){
         configFileProvider([configFile(fileId: _settingsFile, variable: 'SETTINGS_FILE')]) {
             sh(script: libraryResource('global-jjb-shell/docker-login.sh'))
