@@ -500,10 +500,6 @@ def prepBaseBuildImage() {
     def goVersion = edgex.isLTS() ? edgex.getGoModVersion() : env.GO_VERSION
     def baseImage = edgex.getGoLangBaseImage(goVersion, env.USE_ALPINE)
 
-    echo env.ARCH
-
-    echo baseImage
-
     if(env.ARCH == 'arm64' && baseImage.contains(env.DOCKER_REGISTRY)) {
         baseImage = baseImage.replace('edgex-golang-base', "edgex-golang-base-${env.ARCH}")
     }
