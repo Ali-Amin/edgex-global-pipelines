@@ -500,7 +500,7 @@ def prepBaseBuildImage() {
     def goVersion = edgex.isLTS() ? edgex.getGoModVersion() : env.GO_VERSION
     def baseImage = edgex.getGoLangBaseImage(goVersion, env.USE_ALPINE)
 
-    echo env.getEnvironment()
+    echo env.ARCH
 
     echo baseImage
 
