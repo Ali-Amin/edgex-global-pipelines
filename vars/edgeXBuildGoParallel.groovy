@@ -444,21 +444,23 @@ def call(config) {
             }
         }
 
-        // post {
-        //     failure {
-        //         script {
-        //             sh 'echo failed'
-        //             currentBuild.result = 'FAILED'
-        //             // only send email when on a release stream branch i.e. main, hanoi, ireland, etc.
-        //             if(edgex.isReleaseStream()) {
-        //                 edgeXEmail(emailTo: env.BUILD_FAILURE_NOTIFY_LIST)
-        //             }
-        //         }
-        //     }
-        //     cleanup {
-        //         cleanWs()
-        //     }
-        // }
+        post {
+            failure {
+                script {
+                    currentBuild.result = 'FAILED'
+                    // only send email when on a release stream branch i.e. main, hanoi, ireland, etc.
+                    if(edgex.isReleaseStream()) {
+                        edgeXEmail(emailTo: env.BUILD_FAILURE_NOTIFY_LIST)
+                    }
+                }
+            }
+            always {
+                edgeXInfraPublish()
+            }
+            cleanup {
+                cleanWs()
+            }
+        }
     }
 }
 
@@ -498,6 +500,12 @@ def prepBaseBuildImage() {
 
     // this would be something like golang:1.13 or a pre-built devops managed image from ci-build-images
     def goVersion = edgex.isLTS() ? edgex.getGoModVersion() : env.GO_VERSION
+    edgex.bannerMessage "[output]"
+    edgex.bannerMessage "[output]xx [${edgex.isLTS()}]"
+    edgex.bannerMessage "[output]xx [${edgex.getGoModVersion()}]"
+    edgex.bannerMessage "[output]xx [${env.GO_VERSION}]"
+    edgex.bannerMessage "[output]xx [${goVersion}]"
+
     def baseImage = edgex.getGoLangBaseImage(goVersion, env.USE_ALPINE)
 
     if(env.ARCH == 'arm64' && baseImage.contains(env.DOCKER_REGISTRY)) {
