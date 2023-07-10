@@ -142,9 +142,9 @@ def call(config) {
             timeout(360)
             disableConcurrentBuilds()
         }
-        triggers {
-            issueCommentTrigger('.*^recheck$.*')
-        }
+        // triggers {
+        //     issueCommentTrigger('.*^recheck$.*')
+        // }
         parameters {
             string(
                 name: 'CommitId',
