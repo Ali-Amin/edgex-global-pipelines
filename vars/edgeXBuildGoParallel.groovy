@@ -375,7 +375,7 @@ def call(config) {
                                 }
                                 post {
                                     always {
-                                        script { edgex.parallelJobCost('arm64') }
+                                        script { edgex.parallelJobCost('amd64') }
                                     }
                                 }
                             }
