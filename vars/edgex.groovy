@@ -323,7 +323,7 @@ def getCBaseImage(version = 'latest', branchOverride = null) {
     : "nexus3.edgexfoundry.org:10003/edgex-devops/edgex-gcc-base:${version}"
 }
 
-def parallelJobCost(tag='arm64') {
+def parallelJobCost(tag='amd64') {
     docker.image("nexus3.edgexfoundry.org:10003/edgex-lftools-log-publisher:${tag}")
         .inside('-u 0:0 --privileged --net host -v /home/jenkins:/home/jenkins -v /run/cloud-init/result.json:/run/cloud-init/result.json')
     {
