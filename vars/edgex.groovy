@@ -65,6 +65,8 @@
  - `edgex.createPR`: Creates a PR with the [GitHub CLI](https://cli.github.com/) for with a given branch, title, message and reviewers for. Note: This is generic enough to be used in other functions.
 */
 
+@Library("lf-pipelines") _
+
 def isReleaseStream(branchName = env.GIT_BRANCH) {
     // what defines a main release branch
     def releaseStreams = [/^main$/, /^master$/, /^california$/, /^delhi$/, /^edinburgh$/, /^fuji$/, /^geneva$/, /^hanoi$/, /^ireland$/, /^lts-test$/, /^jakarta$/, /^kamakura$/, /^levski$/, /^minnesota$/]
