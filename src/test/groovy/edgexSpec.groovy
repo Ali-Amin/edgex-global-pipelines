@@ -862,7 +862,7 @@ public class EdgeXSpec extends JenkinsPipelineSpecification {
     def "Test parallelJobCost [Should] call lfParallelCostCapture inside a docker image [When] called with no tag parameter" () {
         setup:
             explicitlyMockPipelineVariable('lfParallelCostCapture')
-            getPipelineMock('docker.image')('nexus3.edgexfoundry.org:10003/edgex-lftools-log-publisher:arm64') >> explicitlyMockPipelineVariable('DockerImageMock')
+            getPipelineMock('docker.image')('nexus3.edgexfoundry.org:10003/edgex-lftools-log-publisher:amd64') >> explicitlyMockPipelineVariable('DockerImageMock')
         when:
             edgeX.parallelJobCost('arm64')
         then:
