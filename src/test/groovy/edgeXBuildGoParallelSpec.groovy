@@ -182,7 +182,7 @@ public class EdgeXBuildGoParallelSpec extends JenkinsPipelineSpecification {
     def "Test prepBaseBuildImage [Should] call docker build with expected arguments [When] ARM architecture and base image contains registry" () {
         setup:
             def environmentVariables = [
-                'ARCH': 'arm64',
+                'ARCH': 'amd64',
                 'DOCKER_REGISTRY': 'nexus3.edgexfoundry.org',
                 'http_proxy': 'MyHttpProxy',
                 'DOCKER_BUILD_FILE_PATH': 'MyDockerBuildFilePath',
