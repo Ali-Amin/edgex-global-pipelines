@@ -15,6 +15,7 @@ import org.jenkinsci.plugins.workflow.libs.Library
 // limitations under the License.
 //
 
+
 /**
  # edgeXBuildGoParallel
 
@@ -110,6 +111,8 @@ import org.jenkinsci.plugins.workflow.libs.Library
  ```
 */
 
+@Library("lf-pipelines") _
+
 def taggedAMD64Images = []
 def taggedARM64Images = []
 def dockerImagesToBuild
@@ -139,9 +142,9 @@ def call(config) {
             timeout(360)
             disableConcurrentBuilds()
         }
-        // triggers {
-            // issueCommentTrigger('.*^recheck$.*')
-        // }
+        triggers {
+            issueCommentTrigger('.*^recheck$.*')
+        }
         parameters {
             string(
                 name: 'CommitId',
